@@ -10,7 +10,7 @@ public final class Driver
 	private static final Item ITEM_JAM = new Item("Jam", 2, 400);
 	private static final Item ITEM_BUTTER = new Item("Butter", 3, 250);
 	
-	private static final Item[] ITEMS = { ITEM_CEREAL, ITEM_JAM, ITEM_BUTTER };
+	//private static final Item[] ITEMS = { ITEM_CEREAL, ITEM_JAM, ITEM_BUTTER };
 	
 	private Driver() {}
 	
@@ -19,7 +19,15 @@ public final class Driver
 	 */
 	public static void main(String[] pArgs)
 	{
-		for( Item item : ITEMS )
+		Corporation corp = Corporation.getInstance();
+		Inventory inv = new Inventory("Food");
+		inv.stock(ITEM_CEREAL, 1);
+		inv.stock(ITEM_JAM, 2);
+		inv.stock(ITEM_BUTTER, 3);
+		corp.addInventory(inv);
+		
+		
+		for( Item item : inv )
 		{
 			System.out.println(item.getName());
 		}

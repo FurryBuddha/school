@@ -1,12 +1,13 @@
 package labtest01;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Represents the inventory of a 
  * physical grocery store.
  */
-public class Inventory
+public class Inventory implements Iterable<Item>
 {
 	private final String aName; // Unique
 	private final HashMap<Item, Integer> aInventory = new HashMap<>();
@@ -51,10 +52,10 @@ public class Inventory
 	 * the garbage.
 	 * @param pItem The type of item to dispose of
 	 * @param pQuantity The amount to dispose.
-	 * @pre aInventory.containsKey(pItem) && pQuantity >= aInventory.get(pItem)
 	 */
 	public void dispose(Item pItem, int pQuantity)
 	{
+		assert aInventory.containsKey(pItem) && pQuantity >= aInventory.get(pItem);
 		int amount = aInventory.get(pItem);
 		amount -= pQuantity;
 		aInventory.put(pItem, amount);
@@ -74,5 +75,10 @@ public class Inventory
 		{
 			return 0;
 		}
+	}
+
+	@Override
+	public Iterator<Item> iterator() {
+		return aInventory.keySet().iterator();
 	}
 }

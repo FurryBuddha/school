@@ -9,13 +9,24 @@ import java.util.Map;
  */
 public class Corporation
 {
+	private static final Corporation INSTANCE = new Corporation(); 
+	private Corporation(){}
+	
+	public static Corporation getInstance()
+	{
+		return INSTANCE;
+	}
+	
 	private Map<String, Inventory> aInventories = new HashMap<String, Inventory>();
 	
 	/**
 	 * @param pInventory An inventory to add to the corporation.
 	 */
+	
 	public void addInventory(Inventory pInventory)
 	{
 		aInventories.put(pInventory.getName(), pInventory);
 	}
+	
+	
 }
